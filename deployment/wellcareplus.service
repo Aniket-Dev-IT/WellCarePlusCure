@@ -1,0 +1,39 @@
+[Unit]
+Description=WellCarePlus Healthcare Management System
+Documentation=https://github.com/your-org/wellcareplus
+After=network.target postgresql.service redis.service
+Wants=postgresql.service redis.service
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+RuntimeDirectory=wellcareplus
+WorkingDirectory=/opt/wellcareplus
+Environment="PATH=/opt/wellcareplus/venv/bin"
+Environment="DJANGO_SETTINGS_MODULE=wellcareplusCure.settings.production"
+ExecStart=/opt/wellcareplus/venv/bin/gunicorn --config gunicorn.conf.py wellcareplusCure.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wellcareplus
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/wellcareplus/logs /opt/wellcareplus/media /tmp
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
