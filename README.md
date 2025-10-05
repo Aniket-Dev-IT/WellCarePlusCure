@@ -14,7 +14,7 @@
 
 ---
 
-### 🏆 **Featured Project** | ⭐ **Production Ready** | 🔒 **Enterprise Grade**
+### 🏆 **Featured Project** 
 
 </div>
 
@@ -124,7 +124,7 @@ WellCarePlusCure is a **comprehensive healthcare platform** designed to revoluti
 
 ---
 
-**Appointment Management System**
+**Admin Management**
 
 ![User + Appointment Management](Snap/User%20+%20Appointment%20Management.png)
 
